@@ -586,6 +586,22 @@ class CreateSensors(RoombaSensors):
       return True
     else:
       return False
+	  
+  def GetLeftBump(self):
+    bytes = self.RequestSensor(7,1)
+    bumps = struct.unpack('B', bytes)[0]
+    if bool(bumps & 0x02) != 0:
+      return True
+    else:
+      return False
+	  
+  def GetRightBump(self):
+    bytes = self.RequestSensor(7,1)
+    bumps = struct.unpack('B', bytes)[0]
+    if bool(bumps & 0x01) != 0:
+      return True
+    else:
+      return False
       
   def GetWall(self):
     bytes = self.RequestSensor(27,2)
